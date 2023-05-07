@@ -1,24 +1,27 @@
+import logoHeader from './images/logo.svg';
+import userAvatar from './images/profile-image.jpg';
+
 function App() {
   return (
     <body class="page">
       <div className="page__container">
 
         <header className="header">
-          <img className="c" src="=require('./images/logo.svg')" alt="Надпись на латинице: Место и Россия" />
+          <img className="c" src={logoHeader} alt="Надпись на латинице: Место и Россия" />
         </header>
 
         <main className="main">
 
           <section className="profile">
             <div className="profile__pencil">
-              <img className="profile__image cursor" src="require('./images/profile-image.jpg')" alt="Аватар пользователя" />
+              <img className="profile__image cursor" src={userAvatar} alt="Аватар пользователя" />
             </div>
             <div className="profile__content">
               <div className="profile__name-buttom">
-                <h1 className="profile__title">1</h1>
+                <h1 className="profile__title">Жак-Ив Кусто</h1>
                 <button type="button" className="profile__popup-open opacity cursor"></button>
               </div>
-              <p className="profile__subtitle"></p>
+              <p className="profile__subtitle">Исследователь океана</p>
             </div>
             <button type="button" className="profile__vector opacity cursor"></button>
           </section>
@@ -149,8 +152,8 @@ function App() {
 
     </body >
 
-
   );
+
 }
 
 export default App;
