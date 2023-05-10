@@ -32,85 +32,68 @@ function App() {
         name={'avatar'}
         title={'Обновить аватар'}
         buttonText={'Сохранить'}
-        input={
-          <>
-            <input
-              id='input-link-type-avatar'
-              className='popup__input popup__input_type_link'
-              type='url'
-              name='link'
-              placeholder='Ссылка на картинку'
-              required />
-            <span id='input-link-type-avatar-error' className='error'></span>
-          </>
-        }
-      />
+      >
+        <input
+          id='input-link-type-avatar'
+          className='popup__input popup__input_type_link'
+          type='url'
+          name='link'
+          placeholder='Ссылка на картинку'
+          required />
+        <span id='input-link-type-avatar-error' className='error'></span>
+      </PopupWithForm>
       {/* редактирование профиля */}
       <PopupWithForm
         name={'edit'}
         title={'Редактировать профиль'}
         buttonText={'Сохранить'}
-        input={
-          <>
-            <input
-              id="input-name"
-              className="popup__input popup__input_type_name"
-              placeholder="Введите имя"
-              type="text"
-              name="title"
-              minLength="2"
-              maxLength="40"
-              required />
-            <span id="input-name-error" className="error"></span>
-          </>
-        }
-        input1={
-          <>
-            <input
-              id="input-about"
-              className="popup__input popup__input_type_about"
-              placeholder="Введите род деятельности"
-              name="about"
-              type="text"
-              minLength="2"
-              maxLength="200"
-              required />
-            <span id="input-about-error" className="error"></span>
-          </>
-        }
-      />
+      >
+        <input
+          id="input-name"
+          className="popup__input popup__input_type_name"
+          placeholder="Введите имя"
+          type="text"
+          name="title"
+          minLength="2"
+          maxLength="40"
+          required />
+        <span id="input-name-error" className="error"></span>
+        <input
+          id="input-about"
+          className="popup__input popup__input_type_about"
+          placeholder="Введите род деятельности"
+          name="about"
+          type="text"
+          minLength="2"
+          maxLength="200"
+          required />
+        <span id="input-about-error" className="error"></span>
+      </PopupWithForm>
       {/* добавление карточки */}
       <PopupWithForm
         name={'add'}
         title={'Новое место'}
         buttonText={'Создать'}
-        input={
-          <>
-            <input
-              id="input-title"
-              className="popup__input popup__input_type_title"
-              type="text"
-              name="name"
-              placeholder="Название"
-              minLength="2"
-              maxLength="30"
-              required />
-            <span id="input-title-error" className="error"></span>
-          </>
-        }
-        input1={
-          <>
-            <input
-              id="input-link"
-              className="popup__input popup__input_type_link"
-              type="url"
-              name="link"
-              placeholder="Ссылка на картинку"
-              required />
-            <span id="input-link-error" className="error"></span>
-          </>
-        }
-      />
+      >
+        <input
+          id="input-title"
+          className="popup__input popup__input_type_title"
+          type="text"
+          name="name"
+          placeholder="Название"
+          minLength="2"
+          maxLength="30"
+          required />
+        <span id="input-title-error" className="error"></span>
+        <input
+          id="input-link"
+          className="popup__input popup__input_type_link"
+          type="url"
+          name="link"
+          placeholder="Ссылка на картинку"
+          required />
+        <span id="input-link-error" className="error"></span>
+      </PopupWithForm>
       {/* удаление карточки */}
       <PopupWithForm
         name={'remove'}
