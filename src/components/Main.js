@@ -1,4 +1,6 @@
 import userAvatar from '../images/profile-image.jpg';
+import PopupWithForm from './PopupWithForm';
+
 function Main() {
 
   function handleEditAvatarClick() {
@@ -34,7 +36,8 @@ function Main() {
         </section>
       </main>
       {/* редактирование аватара */}
-      <div className="popup popup_avatar" id="popup_avatar">
+      <PopupWithForm />
+      {/* <div className="popup popup_avatar" id="popup_avatar">
         <div className="popup__container">
           <button type="button" className="popup__close cursor"></button>
           <form className="popup__form popup__form_type_avatar" action="#" method="get" name="avatar" noValidate>
@@ -50,7 +53,7 @@ function Main() {
             <button type="submit" name="button" className="popup__button cursor">Сохранить</button>
           </form>
         </div>
-      </div>
+      </div> */}
       {/* редактирование профиля */}
       <div className="popup popup_edit" id="popup_edit">
         <div className="popup__container">
@@ -63,8 +66,8 @@ function Main() {
               placeholder="Введите имя"
               type="text"
               name="title"
-              minlength="2"
-              maxlength="40"
+              minLength="2"
+              maxLength="40"
               required />
             <span id="input-name-error" className="error"></span>
             <input
@@ -73,8 +76,8 @@ function Main() {
               placeholder="Введите род деятельности"
               name="about"
               type="text"
-              minlength="2"
-              maxlength="200"
+              minLength="2"
+              maxLength="200"
               required />
             <span id="input-about-error" className="error"></span>
             <button type="submit" name="button" className="popup__button cursor">Сохранить</button>
@@ -93,8 +96,8 @@ function Main() {
               type="text"
               name="name"
               placeholder="Название"
-              minlength="2"
-              maxlength="30"
+              minLength="2"
+              maxLength="30"
               required />
             <span id="input-title-error" className="error"></span>
             <input
