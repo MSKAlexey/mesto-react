@@ -2,6 +2,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 
 
 function App() {
@@ -118,16 +119,7 @@ function App() {
         buttonText={'Да'}
       />
       {/* открытие картинки */}
-      <div className='popup popup_img'>
-        <div className='popup__content'>
-          <button type='button' className='popup__close cursor'></button>
-          <form className='form form_img' action='#' method='get' name='img' noValidate>
-            <img src='https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' alt=''
-              className='popup__image' />
-            <h2 className='popup__name'>2</h2>
-          </form>
-        </div>
-      </div>
+      <ImagePopup />
 
       {/* template */}
       <template className='template' id='template'>
