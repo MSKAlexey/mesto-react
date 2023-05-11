@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -5,24 +6,32 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
+
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
+  }
+
   return (
     <div className='page'>
 
       <div className='page__container'>
         <Header />
         <Main
-          handleEditAvatarClick={() => {
-            document.querySelector('.popup_avatar').classList.add('popup_opened')
-          }
-          }
-          handleEditProfileClick={() => {
-            document.querySelector('.popup_edit').classList.add('popup_opened')
-          }
-          }
-          handleAddPlaceClick={() => {
-            document.querySelector('.popup_add').classList.add('popup_opened')
-          }
-          }
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
         />
         <Footer />
       </div>
@@ -32,6 +41,7 @@ function App() {
         name={'avatar'}
         title={'Обновить аватар'}
         buttonText={'Сохранить'}
+        isOpen={isEditAvatarPopupOpen}
       >
         <input
           id='input-link-type-avatar'
@@ -47,6 +57,7 @@ function App() {
         name={'edit'}
         title={'Редактировать профиль'}
         buttonText={'Сохранить'}
+        isOpen={isEditProfilePopupOpen}
       >
         <input
           id="input-name"
@@ -74,6 +85,7 @@ function App() {
         name={'add'}
         title={'Новое место'}
         buttonText={'Создать'}
+        isOpen={isAddPlacePopupOpen}
       >
         <input
           id="input-title"

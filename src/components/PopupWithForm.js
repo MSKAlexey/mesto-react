@@ -1,6 +1,6 @@
-function PopupWithForm({ name, title, buttonText, children }) {
+function PopupWithForm({ name, title, buttonText, children, isOpen }) {
   return (
-    <div className={`popup popup_${name}`}>
+    <div className={isOpen ? `popup popup_${name} popup_opened` : `popup popup_${name}`}>
       <div className='popup__container'>
         <button type='button' className='popup__close cursor'></button>
         <form className={`popup__form popup__form_type_${name}`} action='#' method='get' name={name} noValidate>
