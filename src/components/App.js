@@ -4,21 +4,31 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import api from '../utils/Api';
 
 function App() {
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [cards, setCards] = React.useState([]);
+  const [selectedCard, setSelectedCard] = React.useState(null);
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((card) => {
+        setCards(card);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
-
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
-
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
@@ -27,6 +37,11 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setSelectedCard(null);
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   return (
@@ -38,6 +53,8 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          cards={cards}
+          onCardClick={handleCardClick}
         />
         <Footer />
       </div>
@@ -122,7 +139,9 @@ function App() {
         buttonText={'Да'}
       />
       {/* открытие картинки */}
-      <ImagePopup />
+      <ImagePopup
+        card={selectedCard} onClose={closeAllPopups}
+      />
 
       {/* template */}
       <template className='template' id='template'>
