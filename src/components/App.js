@@ -14,11 +14,9 @@ function App() {
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
-
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
-
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
@@ -123,21 +121,6 @@ function App() {
       />
       {/* открытие картинки */}
       <ImagePopup />
-
-      {/* template */}
-      <template className='template' id='template'>
-        <li className='cards__item'>
-          <button type='button' className='cards__trash cursor'></button>
-          <img src='#' alt='' className='cards__image' />
-          <div className='cards__title-icon'>
-            <h2 className='cards__title'>3</h2>
-            <div className='cards_like-count'>
-              <button type='button' className='cards__icon cursor'></button>
-              <div className='cards__count'>0</div>
-            </div>
-          </div>
-        </li>
-      </template>
 
     </div >
   );

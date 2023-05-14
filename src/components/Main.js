@@ -1,7 +1,6 @@
 import React from 'react';
 import api from '../utils/Api';
-
-// import userAvatar from '../images/profile-image.jpg';
+import Card from './Card';
 
 function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
 
@@ -10,25 +9,18 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
   const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
+  console.log(cards)
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, initialCards]) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        console.log(initialCards);
-        setCards(initialCards.map(item => ({
-          id: item._id,
-          link: item.link,
-          name: item.name,
-          likes: item.likes,
-          // onCardClick: onCardClick,
-        })));
+      .then(([data, card]) => {
+        setUserName(data.name);
+        setUserDescription(data.about);
+        setUserAvatar(data.avatar);
+        setCards(card);
       })
-      .catch((err) => {
-        console.log(err, "ошибка при загрузке страницы");
-      });
-  }, []); 
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <main className="main">
@@ -59,8 +51,12 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
       </section>
       <section className="places">
         <ul className="cards">
-        {cards.map(({ id, ...props }) => (
-            //  <Card key={id} {...props} handleCardClick />
+          {cards.map((item) => (
+            <Card
+              card={item}
+              link={item.link}
+              key={item._id}
+            />
           ))}
         </ul>
       </section>
