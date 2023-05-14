@@ -9,8 +9,6 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
   const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
 
-  console.log(cards)
-
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([data, card]) => {
