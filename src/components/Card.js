@@ -1,4 +1,6 @@
-function Card({ card }, key) {
+function Card({ card, key }) {
+
+  console.log(key)
 
   return (
     <li className='cards__item'>
