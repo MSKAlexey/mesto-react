@@ -25,7 +25,6 @@ function App() {
   function handleCardClick(card) {
     setImagePopupOpen(true);
     setselectedCard(card)
-    console.log(card)
   }
 
   function closeAllPopups() {
