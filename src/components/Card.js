@@ -1,11 +1,18 @@
-function Card({ card, key}) {
+function Card({ card, onCardClick}) {
 
-  // console.log(key)
+  function handleClick() {
+    onCardClick(card);
+  }
 
   return (
     <li className='cards__item'>
       <button type='button' className='cards__trash cursor'></button>
-      <img src={card.link} alt={card.name} className='cards__image' />
+      <img
+      src={card.link}
+      alt={card.name}
+      className='cards__image'
+      onClick={handleClick}
+      />
       <div className='cards__title-icon'>
         <h2 className='cards__title'>{card.name}</h2>
         <div className='cards_like-count'>

@@ -22,6 +22,11 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+  function handleCardClick(card) {
+    setImagePopupOpen(true);
+    setselectedCard(card)
+    console.log(card)
+  }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -39,6 +44,7 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
       </div>
@@ -124,7 +130,9 @@ function App() {
       />
       {/* открытие картинки */}
       <ImagePopup />
-
+      onClose={closeAllPopups}
+      isOpen={isImagePopupOpen}
+      {/* card={selectedCard} */}
     </div >
   );
 }

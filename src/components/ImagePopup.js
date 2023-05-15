@@ -1,4 +1,7 @@
 function ImagePopup() {
+
+  
+
   return (
     <div className='popup popup_img'>
       <div className='popup__content'>
