@@ -132,7 +132,7 @@ function App() {
       <ImagePopup />
       onClose={closeAllPopups}
       isOpen={isImagePopupOpen}
-      {/* card={selectedCard} */}
+      card={selectedCard}
     </div >
   );
 }
