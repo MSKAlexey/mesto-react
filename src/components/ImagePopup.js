@@ -7,14 +7,12 @@ function ImagePopup({ onClose, isOpen, card }) {
           className='popup__close cursor'
           onClick={onClose}
         ></button>
-        <form className='form form_img' action='#' method='get' name='img' noValidate>
-          <img
-            src={card.link}
-            alt={card.name}
-            className='popup__image'
-          />
-          <h2 className='popup__name'>{card.name}</h2>
-        </form>
+        <img
+          src={card.link}
+          alt={card.name}
+          className='popup__image'
+        />
+        <h2 className='popup__name'>{card.name}</h2>
       </div>
     </div>
   )

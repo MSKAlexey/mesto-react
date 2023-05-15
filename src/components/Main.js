@@ -17,7 +17,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         setUserAvatar(data.avatar);
         setCards(card);
       })
-      .catch(err => console.log(err));
+      .catch(console.error);
   }, []);
 
   return (
@@ -51,6 +51,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         <ul className="cards">
           {cards.map((item) => (
             <Card
+              key={item._id}
               card={item}
               onCardClick={onCardClick}
             />
