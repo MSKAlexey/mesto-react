@@ -1,7 +1,4 @@
 function ImagePopup({ onClose, isOpen, card }) {
-
-
-
   return (
     <div className={isOpen ? `popup popup_img  popup_opened` : `popup popup_img`}>
       <div className='popup__content'>

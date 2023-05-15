@@ -134,7 +134,7 @@ function App() {
         isOpen={isImagePopupOpen}
         card={selectedCard}
       />
-    </div >
+    </div>
   );
 }
 
