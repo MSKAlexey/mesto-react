@@ -129,10 +129,11 @@ function App() {
         buttonText={'Да'}
       />
       {/* открытие картинки */}
-      <ImagePopup />
-      onClose={closeAllPopups}
-      isOpen={isImagePopupOpen}
-      card={selectedCard}
+      <ImagePopup
+        onClose={closeAllPopups}
+        isOpen={isImagePopupOpen}
+        card={selectedCard}
+      />
     </div >
   );
 }
