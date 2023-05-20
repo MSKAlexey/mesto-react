@@ -15,6 +15,8 @@ function App() {
   const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
   const [selectedCard, setselectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
+  const [cards, setCards] = React.useState([]);
+
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -38,18 +40,17 @@ function App() {
   }
 
   React.useEffect(() => {
-    Promise.all([api.getUserInfo()])
-      .then(([data]) => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([data, card]) => {
         setCurrentUser(data);
+        setCards(card);
       })
       .catch(console.error);
   }, []);
 
   function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     });
@@ -69,6 +70,7 @@ function App() {
             onAddPlace={handleAddPlaceClick}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
+            cards={cards}
           />
           <Footer />
         </div>

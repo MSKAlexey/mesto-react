@@ -89,6 +89,14 @@ class Api {
       }).then(this._checkStatusResponse);
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.addLike(cardId);
+    } else {
+      return this.deleteLike(cardId);
+    }
+  }
+
 }
 const api = new Api();
 export default api;
