@@ -3,6 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import EditProfilePopup from './EditProfilePopup';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
@@ -93,34 +94,10 @@ function App() {
           <span id='input-link-type-avatar-error' className='error'></span>
         </PopupWithForm>
         {/* редактирование профиля */}
-        <PopupWithForm
-          name={'edit'}
-          title={'Редактировать профиль'}
-          buttonText={'Сохранить'}
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            id="input-name"
-            className="popup__input popup__input_type_name"
-            placeholder="Введите имя"
-            type="text"
-            name="title"
-            minLength="2"
-            maxLength="40"
-            required />
-          <span id="input-name-error" className="error"></span>
-          <input
-            id="input-about"
-            className="popup__input popup__input_type_about"
-            placeholder="Введите род деятельности"
-            name="about"
-            type="text"
-            minLength="2"
-            maxLength="200"
-            required />
-          <span id="input-about-error" className="error"></span>
-        </PopupWithForm>
+        />
         {/* добавление карточки */}
         <PopupWithForm
           name={'add'}
