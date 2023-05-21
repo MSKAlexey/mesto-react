@@ -48,7 +48,6 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    console.log(data)
     api.changeUserInfo({ data })
       .then(
         (data) => {
