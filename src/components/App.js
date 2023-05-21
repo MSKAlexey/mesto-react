@@ -4,6 +4,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
@@ -57,6 +58,17 @@ function App() {
       )
   }
 
+  function handleUpdateAvatar(data) {
+    console.log(data)
+    api.changeUserAvatar(data)
+      .then(
+        (data) => {
+          setCurrentUser(data);
+          closeAllPopups();
+        },
+      )
+  }
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([data, card]) => {
@@ -85,29 +97,20 @@ function App() {
           <Footer />
         </div>
 
-        {/* редактирование аватара */}
-        <PopupWithForm
-          name={'avatar'}
-          title={'Обновить аватар'}
-          buttonText={'Сохранить'}
-          isOpen={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}
-        >
-          <input
-            id='input-link-type-avatar'
-            className='popup__input popup__input_type_link'
-            type='url'
-            name='link'
-            placeholder='Ссылка на картинку'
-            required />
-          <span id='input-link-type-avatar-error' className='error'></span>
-        </PopupWithForm>
         {/* редактирование профиля */}
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
+
+        {/* редактирование аватара */}
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+        />
+
         {/* добавление карточки */}
         <PopupWithForm
           name={'add'}
