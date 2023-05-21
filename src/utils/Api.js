@@ -50,14 +50,14 @@ class Api {
       }).then(this._checkStatusResponse);
   }
 
-  changeUserInfo({ title, about }) {
+  changeUserInfo({ data }) {
     return fetch(`${this._url}users/me`,
       {
         method: "PATCH",
         headers: this._headers,
         body: JSON.stringify({
-          name: title,
-          about: about,
+          name: data.name,
+          about: data.about,
         })
       }).then(this._checkStatusResponse);
   }

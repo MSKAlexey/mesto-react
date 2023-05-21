@@ -33,11 +33,29 @@ function App() {
     setselectedCard(card)
   }
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setImagePopupOpen(false);
+  }
+
+  function handleUpdateUser(data) {
+    console.log(data)
+    api.changeUserInfo({ data })
+      .then(
+        (data) => {
+          setCurrentUser(data);
+          closeAllPopups();
+        },
+      )
   }
 
   React.useEffect(() => {
@@ -48,14 +66,6 @@ function App() {
       })
       .catch(console.error);
   }, []);
-
-  function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
-  }
 
   return (
 
@@ -97,6 +107,7 @@ function App() {
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
         {/* добавление карточки */}
         <PopupWithForm
