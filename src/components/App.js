@@ -41,6 +41,17 @@ function App() {
     });
   }
 
+  function handleCardDelete(evt) {
+    evt.preventDefault();
+    api.deleteCard(cardForDelete._id)
+      .then(
+        () => {
+          const newCards = cards.filter((elem) => elem !== cardForDelete);
+          setCards(newCards);
+          closeAllPopups();
+        });
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
