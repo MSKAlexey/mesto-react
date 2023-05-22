@@ -1,5 +1,4 @@
 import React from 'react';
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddCard }) {
@@ -9,8 +8,15 @@ function AddPlacePopup({ isOpen, onClose, onAddCard }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    onAddCard({name, link});
+    onAddCard({ name, link });
   }
+
+  React.useEffect(() => {
+    if (!isOpen) {
+      setName('');
+      setLink('');
+    }
+  }, [isOpen])
 
   return (
     <PopupWithForm
@@ -30,6 +36,7 @@ function AddPlacePopup({ isOpen, onClose, onAddCard }) {
         minLength="2"
         maxLength="30"
         required
+        value={name}
         onChange={e => setName(e.target.value)}
       />
       <span id="input-title-error" className="error"></span>
@@ -40,6 +47,7 @@ function AddPlacePopup({ isOpen, onClose, onAddCard }) {
         name="link"
         placeholder="Ссылка на картинку"
         required
+        value={link}
         onChange={e => setLink(e.target.value)}
       />
       <span id="input-link-error" className="error"></span>

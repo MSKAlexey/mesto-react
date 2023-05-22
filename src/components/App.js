@@ -35,17 +35,26 @@ function App() {
     setselectedCard(card)
   }
 
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setImagePopupOpen(false);
+  }
+
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    })
+      .catch(console.error);
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then((newCard) => {
-      setCards((state) => state.filter((c) => c._id === card._id ? newCard : c));
-    });
+    api.deleteCard(card._id).then(() => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    })
+      .catch(console.error);
   }
 
   function handleAddPlaceSubmit({ name, link }) {
@@ -54,14 +63,8 @@ function App() {
         (newCard) => {
           setCards([newCard, ...cards]);
           closeAllPopups();
-        });
-  }
-
-  function closeAllPopups() {
-    setIsEditProfilePopupOpen(false);
-    setIsEditAvatarPopupOpen(false);
-    setIsAddPlacePopupOpen(false);
-    setImagePopupOpen(false);
+        })
+      .catch(console.error);
   }
 
   function handleUpdateUser(data) {
@@ -70,8 +73,8 @@ function App() {
         (data) => {
           setCurrentUser(data);
           closeAllPopups();
-        },
-      )
+        })
+      .catch(console.error);
   }
 
   function handleUpdateAvatar(data) {
@@ -80,8 +83,8 @@ function App() {
         (data) => {
           setCurrentUser(data);
           closeAllPopups();
-        },
-      )
+        })
+      .catch(console.error);
   }
 
   React.useEffect(() => {

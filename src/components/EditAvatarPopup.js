@@ -5,9 +5,16 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   const avatar = React.useRef();
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     onUpdateAvatar(avatar.current.value);
   }
+
+  React.useEffect(() => {
+    if (!isOpen) {
+      avatar.current.value = '';
+    }
+  }, [isOpen])
 
   return (
     <PopupWithForm

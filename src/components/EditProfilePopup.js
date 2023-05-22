@@ -5,11 +5,11 @@ import PopupWithForm from './PopupWithForm';
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState({});
-  const [description, setDescription] = React.useState({});
+  const [name, setName] = React.useState('');
+  const [description, setDescription] = React.useState('');
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
     onUpdateUser({
       name,
       about: description,
@@ -19,7 +19,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   return (
     <PopupWithForm
@@ -39,7 +39,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         minLength="2"
         maxLength="40"
         required
-        value={name}
+        value={name || ''}
         onChange={e => setName(e.target.value)}
       /><span id="input-name-error" className="error"></span>
       <input
@@ -51,7 +51,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         minLength="2"
         maxLength="200"
         required
-        value={description}
+        value={description || ''}
         onChange={e => setDescription(e.target.value)}
       /><span id="input-about-error" className="error"></span>
     </PopupWithForm>
