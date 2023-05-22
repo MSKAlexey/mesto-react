@@ -62,7 +62,7 @@ class Api {
       }).then(this._checkStatusResponse);
   }
 
-  changeUserAvatar({ link }) {
+  changeUserAvatar(link) {
     return fetch(`${this._url}users/me/avatar`,
       {
         method: "PATCH",

@@ -59,7 +59,6 @@ function App() {
   }
 
   function handleUpdateAvatar(data) {
-    console.log(data)
     api.changeUserAvatar(data)
       .then(
         (data) => {
