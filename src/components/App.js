@@ -47,6 +47,15 @@ function App() {
     });
   }
 
+  function handleAddPlaceSubmit(data) {
+    api.postCard(data)
+      .then(
+        (newCard) => {
+          setCards([newCard, ...cards]);
+          closeAllPopups();
+        });
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);

@@ -6,6 +6,8 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike
 
   const currentUser = React.useContext(CurrentUserContext);
 
+  console.log(cards)
+
   return (
     <main className="main">
       <section className="profile">
