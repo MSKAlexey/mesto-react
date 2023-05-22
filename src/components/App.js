@@ -41,15 +41,10 @@ function App() {
     });
   }
 
-  function handleCardDelete(evt) {
-    evt.preventDefault();
-    api.deleteCard(cardForDelete._id)
-      .then(
-        () => {
-          const newCards = cards.filter((elem) => elem !== cardForDelete);
-          setCards(newCards);
-          closeAllPopups();
-        });
+  function handleCardDelete(card) {
+    api.deleteCard(card._id).then((newCard) => {
+      setCards((state) => state.filter((c) => c._id === card._id ? newCard : c));
+    });
   }
 
   function closeAllPopups() {
@@ -103,6 +98,7 @@ function App() {
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
             cards={cards}
+            onCardDelete={handleCardDelete}
           />
           <Footer />
         </div>
