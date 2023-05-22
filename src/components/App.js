@@ -5,6 +5,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api';
@@ -47,8 +48,8 @@ function App() {
     });
   }
 
-  function handleAddPlaceSubmit(data) {
-    api.postCard(data)
+  function handleAddPlaceSubmit({ name, link }) {
+    api.addCard({ name, link })
       .then(
         (newCard) => {
           setCards([newCard, ...cards]);
@@ -127,32 +128,11 @@ function App() {
         />
 
         {/* добавление карточки */}
-        <PopupWithForm
-          name={'add'}
-          title={'Новое место'}
-          buttonText={'Создать'}
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            id="input-title"
-            className="popup__input popup__input_type_title"
-            type="text"
-            name="name"
-            placeholder="Название"
-            minLength="2"
-            maxLength="30"
-            required />
-          <span id="input-title-error" className="error"></span>
-          <input
-            id="input-link"
-            className="popup__input popup__input_type_link"
-            type="url"
-            name="link"
-            placeholder="Ссылка на картинку"
-            required />
-          <span id="input-link-error" className="error"></span>
-        </PopupWithForm>
+          onAddCard={handleAddPlaceSubmit}
+        />
         {/* удаление карточки */}
         <PopupWithForm
           name={'remove'}
