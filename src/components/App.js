@@ -19,7 +19,7 @@ function App() {
   const [selectedCard, setselectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
-
+  const [isLoading, setIsLoading] = React.useState(false);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -51,40 +51,56 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    setIsLoading(true);
     api.deleteCard(card._id).then(() => {
       setCards((state) => state.filter((c) => c._id !== card._id));
     })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false)
+      });
   }
 
   function handleAddPlaceSubmit({ name, link }) {
+    setIsLoading(true);
     api.addCard({ name, link })
       .then(
         (newCard) => {
           setCards([newCard, ...cards]);
           closeAllPopups();
         })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false)
+      });
   }
 
   function handleUpdateUser(data) {
+    setIsLoading(true);
     api.changeUserInfo({ data })
       .then(
         (data) => {
           setCurrentUser(data);
           closeAllPopups();
         })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false)
+      });
   }
 
   function handleUpdateAvatar(data) {
+    setIsLoading(true);
     api.changeUserAvatar(data)
       .then(
         (data) => {
           setCurrentUser(data);
           closeAllPopups();
         })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false)
+      });
   }
 
   React.useEffect(() => {
@@ -121,6 +137,7 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          onLoading={isLoading}
         />
 
         {/* редактирование аватара */}
@@ -128,6 +145,7 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          onLoading={isLoading}
         />
 
         {/* добавление карточки */}
@@ -135,6 +153,7 @@ function App() {
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddCard={handleAddPlaceSubmit}
+          onLoading={isLoading}
         />
         {/* удаление карточки */}
         <PopupWithForm
