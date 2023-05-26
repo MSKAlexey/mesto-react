@@ -1,6 +1,9 @@
 import React from 'react';
+// import useFormAndValidation from '../hooks/useFormAndValidation';
 
 function PopupWithForm({ name, title, buttonText, children, isOpen, onClose, onSubmit }) {
+
+  // const {values, handleChange, errors, isValid, setValues, resetForm} = useFormAndValidation()
 
   function handleOverlayClosePopups(e) {
     if (e.target === e.currentTarget) {
